@@ -1,13 +1,12 @@
-name: CI
+name: Simple CI
 
 on:
   push:
-    branches: [ 'main' ]
+    branches: [ main ]
   pull_request:
-    branches: [ 'main' ]
-
+    branches: [ main ]
 jobs:
-  jekyll:
+  ci:
     timeout-minutes: 10
     runs-on: ubuntu-latest
     steps:
@@ -29,10 +28,3 @@ jobs:
         bundle config path ~/vendor/bundle
         bundle install --jobs 4 --retry 3
         bundle exec jekyll build
-    - name: Upload site
-      uses: actions/upload-artifact@v2
-      with:
-        name: site
-        path: ./_site/
-        if-no-files-found: ignore
-
